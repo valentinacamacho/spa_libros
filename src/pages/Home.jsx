@@ -17,6 +17,9 @@ function Home() {
       });
   }, []);
 
+  if (loading) 
+    return <p className="text-center mt-4">Cargando productos...</p>
+
   return (
     <div className="container mt-4">
       <h2 className="text-center mb-4">Todos los Productos</h2>
