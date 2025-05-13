@@ -4,7 +4,7 @@ import axios from "axios";
 function Home() {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     axios.get('https://fakestoreapi.com/products')
       .then((res) => {
@@ -20,14 +20,21 @@ function Home() {
   return (
     <div className="container mt-4">
       <h2 className="text-center mb-4">Todos los Productos</h2>
-      <div className="card-body">
-        <h5 className="card-title">Nombre del producto</h5>
-        <p className="card-text">precio del producto</p>
+      <div className="row">
+        {productos.map((producto) =>
+          <div key={producto.id} className="col-md-4 mb-4">
+            <div className="card h-100">
+              <img src={producto.image} className="card-img-top p-3" alt={producto.title} style={{ height: "250px", objectFit: "contain" }} />
+              <div className="card-body">
+                <h5 className="card-title">{producto.title}</h5>
+                <p className="card-text">{producto.price}</p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
-
-
-  )
-};
+  );
+}
 
 export default Home;
