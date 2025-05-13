@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 function Home() {
   const [productos, setProductos] = useState([]);
@@ -17,7 +18,7 @@ function Home() {
       });
   }, []);
 
-  if (loading) 
+  if (loading)
     return <p className="text-center mt-4">Cargando productos...</p>
 
   return (
@@ -31,6 +32,9 @@ function Home() {
               <div className="card-body">
                 <h5 className="card-title">{producto.title}</h5>
                 <p className="card-text">{producto.price}</p>
+                <Link to={`/category/${producto.category}`} className="btn btn-primary">
+                  Ver más de {producto.category}
+                </Link>
               </div>
             </div>
           </div>
